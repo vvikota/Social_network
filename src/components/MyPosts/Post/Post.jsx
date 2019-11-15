@@ -7,6 +7,7 @@ const Post = (props) => {
       <img src='http://gloria-mur.ru/wp-content/uploads/2017/05/avatar1-740x463.jpg'  alt='ava'/>
       <div>
         <span>{props.message}</span>
+        <span className={classes.like}>Total likes: {props.likes}</span>
       </div>
     </div>
  

@@ -1,23 +1,23 @@
 import React from 'react';
 import classes from './Navbar.module.scss';
 
-const Nav = () => {
+const Navbar = () => {
   return (
     <nav className={classes.nav}>
       <div className={`${classes.item} ${classes.active}`}>
-        <a href='#'>Profiles</a>
+        <a href='/profile'>Profiles</a>
       </div>
       <div className={classes.item}>
-        <a href='#'>Messages</a>
+        <a href='/dialogs'>Messages</a>
       </div>
       <div className={classes.item}>
-        <a href='#'>News</a>
+        <a href='/news'>News</a>
       </div>
       <div className={classes.item}>
-        <a href='#'>Music</a>
+        <a href='/music'>Music</a>
       </div>
     </nav>
   )
 }
 
-export default Nav;
+export default Navbar;
