@@ -4,6 +4,8 @@
 }
 
 .dialogsItems{
+  display: flex;
+  flex-direction: column;
   padding: 10px;
 }
 
@@ -13,4 +15,8 @@
 
 .dialogsItems .active {
   color: rgb(66, 19, 235);
+}
+
+.dialog{
+  text-decoration: none;
 }
