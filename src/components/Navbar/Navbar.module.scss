@@ -2,12 +2,15 @@
 .nav{
   grid-area: n;
   background-color: yellow;
+  padding: 20px;
 }
 
 .item a{
   color: red;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.active a {
+.nav .item .activeLink {
   color: goldenrod;
 }
