@@ -7,7 +7,7 @@ const Profile = () => {
   return (
     <div>
       <ProfileInfo/>
-      <Posts />
+      <Posts/>
     </div>
   )
 }
