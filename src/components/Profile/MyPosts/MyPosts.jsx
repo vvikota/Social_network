@@ -7,16 +7,16 @@ const MyPosts = () => {
     <div>
       My posts
       <div>
-        <textarea name="text" id="" cols="50" rows="5"></textarea>
+        <textarea name="text" id="" cols="50" rows="5"/>
         <button>Add post</button>
       </div>
-    <div className={style.posts}>
-      <Post/>
-      <Post/>
-      <Post/>
-    </div>
+      <div className={style.posts}>
+        <Post message='Hi, how are you?' like='5'/>
+        <Post message='Its my first post' like='10'/>
+        <Post message='Its cool!' like='13'/>
+      </div>
     </div>
   )
-}
+};
 
 export default MyPosts
