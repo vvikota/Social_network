@@ -1,0 +1,10 @@
+.posts{
+  padding: 10px;
+}
+
+.item{
+  max-width: 100px;
+  padding: 5px;
+  border: 2px solid greenyellow;
+  border-radius: 10px;
+}
