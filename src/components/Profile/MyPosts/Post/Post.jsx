@@ -9,7 +9,7 @@ const Posts = (props) => {
       <span>Like: {props.like}</span>
     </div>
   )
-}
+};
 
 export default Posts
 
