@@ -1,14 +1,6 @@
 import React from 'react';
 import style from './MyPosts.module.css';
 
-const posts = [
-  {id: 1, message: 'Hi!', likesCount: 1},
-  {id: 1, message: 'Hi, how are you?', likesCount: 3},
-  {id: 1, message: 'Its my first post', likesCount: 7},
-  {id: 1, message: 'Its cool!', likesCount: 11},
-  {id: 1, message: 'Perfect', likesCount: 3},
-];
-
 const Post = (props) => {
   return (
     <div className={style.item}>
@@ -19,16 +11,29 @@ const Post = (props) => {
   )
 };
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  let Posts = props.posts.map(el => <Post id = {el.id}
+                                          message={el.message}
+                                          like={el.likesCount}/>);
 
-  let Posts = posts.map(el => <Post id = {el.id} message={el.message} like={el.likesCount}/>);
+  let newPostElement = React.createRef();
+
+  let addPost = () => {
+    let text = newPostElement.current.value;
+    props.addPost(text);
+  };
+
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+  };
 
   return (
     <div>
       My posts
       <div>
-        <textarea/>
-        <button>Add post</button>
+        <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+        <button onClick={addPost}>Add post</button>
       </div>
       <div className={style.posts}>
         {Posts}
