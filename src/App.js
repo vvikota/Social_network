@@ -18,8 +18,8 @@ const App = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/dialogs'
                render={() => <Dialogs
-                 dialogsData={props.state.messagesPage.dialogs}
-                 messageData={props.state.messagesPage.messages}
+
+                 store={props.store}
                />}/>
         <Route path='/profile'
                render={() => <Profile
