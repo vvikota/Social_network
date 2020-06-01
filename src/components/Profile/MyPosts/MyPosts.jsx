@@ -13,10 +13,11 @@ const Post = (props) => {
 
 const MyPosts = (props) => {
 
-  let Posts = props.posts.map(el => <Post id = {el.id}
-                                          message={el.message}
-                                          like={el.likesCount}
-                                    />);
+  let Posts = props.posts.map((el, index) => <Post id = {el.id}
+                                                             message={el.message}
+                                                             like={el.likesCount}
+                                                             key={index}
+                                                           />);
   let newPostElement = React.createRef();
 
   let onAddPost = () => {

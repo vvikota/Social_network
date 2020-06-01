@@ -59,3 +59,8 @@
     <textarea ref={newPostElement}></textarea>
   )
 ```
+## API
+Aplication program interface - это интерфейс программы, программой может React, браузер с его методами и т.д.
+
+## Redux
+Action - обьект с полями type(указывает что изменить), и payload(полезная нагрузка)
