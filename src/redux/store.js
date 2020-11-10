@@ -1,3 +1,5 @@
+// файл неактивный, приложение работает через redux-store.js
+
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 
@@ -33,6 +35,7 @@ let store = {
       newMessageBody:""
     },
   },
+
   _callSubscriber() {
     console.log('change');
   },
@@ -40,7 +43,7 @@ let store = {
   getState(){
     return this._state;
   },
-  
+
   subscribe(observer){
     this._callSubscriber = observer;
   },
