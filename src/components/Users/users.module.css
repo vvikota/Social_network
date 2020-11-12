@@ -1,0 +1,65 @@
+.userCard{
+  display: flex;
+  margin-bottom: 25px;
+  border: 1px solid lightgrey;
+}
+
+.photoBlock{
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.photo{
+  width: 100px;
+  height: 120px;
+  border-radius: 20px;
+}
+
+.photoBlock button{
+  width: 100px;
+  margin-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.photoBlock button.unfollow{
+  background-color: darkred;
+  color: aliceblue;
+}
+
+.photoBlock button.follow{
+  background-color: deepskyblue;
+}
+
+.photoBlock button:active,
+.photoBlock button:focus{
+  outline: none;
+}
+
+.userInformation{
+  padding: 10px;
+}
+
+.name{
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.status,
+.city{
+  font-size: 14px;
+}
+
+.country{
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
