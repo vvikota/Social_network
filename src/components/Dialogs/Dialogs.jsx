@@ -35,6 +35,7 @@ const Dialogs = (props) => {
   };
 
   let onNewMessageChange= (event) =>{
+    // debugger
     let body = event.target.value;
     props.updateNewMessageBody(body);
   };
@@ -49,14 +50,17 @@ const Dialogs = (props) => {
       </div>
 
       <div>
-        <div><textarea
-          placeholder='Enter your message'
-          value={newMessageBody}
-          onChange={onNewMessageChange}
-         /></div>
-        <div><button onClick={sendMessage}>Send</button></div>
+        <div>
+          <textarea
+            placeholder='Enter your message'
+            value={newMessageBody}
+            onChange={onNewMessageChange}
+          />
+        </div>
+        <div>
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
-
     </div>
   )
 };

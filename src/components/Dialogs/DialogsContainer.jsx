@@ -5,22 +5,18 @@ import {
 import { connect } from "react-redux";
 import Dialogs from "./Dialogs";
 
-let mapStateToProps = (state) => {
-  return {
-    messagesPage: state.messagesPage
-  }
-}
+let mapStateToProps = (state) => ({
+  messagesPage: state.messagesPage
+})
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    updateNewMessageBody: (body) => {
-      dispatch(updateNewMessageCreator(body));
+let mapDispatchToProps = (dispatch) => ({
+  updateNewMessageBody: (body) => {
+    dispatch(updateNewMessageCreator(body));
     },
-    sendMessage: () => {
-      dispatch(sendMessageCreator());
-    }
+  sendMessage: () => {
+    dispatch(sendMessageCreator());
   }
-}
+})
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
 
