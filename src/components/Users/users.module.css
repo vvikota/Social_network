@@ -1,3 +1,7 @@
+.users{
+  margin-right: 10px;
+}
+
 .userCard{
   display: flex;
   margin-bottom: 25px;
