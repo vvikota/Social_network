@@ -1,7 +1,6 @@
 
-const FOLLOW = 'FOLLOW';
-const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const photoUrl = "https://i.pinimg.com/474x/a3/7f/b6/a37fb62e44a4ee7d9d0e04b79471018a.jpg";
 
 let initialState = {
@@ -17,22 +16,12 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch(action.type) {
-    case FOLLOW:
+    case TOGGLE_FOLLOW:
       return {
         ...state,
         users: state.users.map(user => {
-          if(user.id === action.userId) {
-            return {...user, followed: true}
-          }
-          return user;
-        })
-      }
-    case UNFOLLOW:
-      return {
-        ...state,
-        users: state.users.map(user => {
-          if(user.id === action.userId) {
-            return {...user, followed: false}
+          if(user.id === action.userId){
+            return {...user, followed: !user.followed}
           }
           return user;
         })
@@ -44,8 +33,7 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const followAC = (userId) => ({type: FOLLOW, userId})
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
+export const toggleFollowAC = (userId) => ({type: TOGGLE_FOLLOW, userId})
 export const setUserAC = (users) => ({type: SET_USERS, users})
 
 export default usersReducer;

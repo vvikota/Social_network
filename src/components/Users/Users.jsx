@@ -8,10 +8,14 @@ const Users = (props) => {
 
           <div className={styles.photoBlock}>
             <img src={user.photoURL} alt="user-img" className={styles.photo} />
-            { user.followed ?
-              <button onClick={() => {props.unfollow(user.id)}} className={styles.unfollow}> Unfollow </button> :
-              <button onClick={() => {props.follow(user.id)}} className={styles.follow}> Follow </button>
-            }
+
+            <button
+              className= { user.followed ? styles.unfollow : styles.follow}
+              onClick={() => {props.toggleFollowAC(user.id)}}
+            >
+              { user.followed ? 'Unfollow' : 'Follow'}
+            </button>
+
           </div>
 
           <div className={styles.userInformation}>
