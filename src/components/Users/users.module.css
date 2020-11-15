@@ -16,7 +16,7 @@
 
 .photo{
   width: 100px;
-  height: 120px;
+  height: 70px;
   border-radius: 20px;
 }
 
@@ -66,4 +66,24 @@
   display: block;
   font-size: 16px;
   font-weight: bold;
+}
+
+.pagination{
+  max-width: 220px;
+  overflow-x: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pagination span{
+  margin-right: 5px;
+  padding: 3px;
+  border: 1px solid darkgreen;
+  cursor: pointer;
+}
+
+.pagination span.currentPage{
+  font-weight: bold;
+  background-color: darkkhaki;
+  cursor: auto;
 }

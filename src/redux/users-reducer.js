@@ -1,18 +1,14 @@
 
 const SET_USERS = 'SET_USERS';
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
-const photoUrl = "https://i.pinimg.com/474x/a3/7f/b6/a37fb62e44a4ee7d9d0e04b79471018a.jpg";
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
 
 let initialState = {
-  // users: [
-  //   {id: 1, photoURL: photoUrl, followed: true, fullName: 'Dmitriy', status: 'I am a boss', location: {city: 'Minsk', country: 'Belarus'}},
-  //   {id: 2,photoURL: photoUrl, followed: true, fullName: 'Viktor', status: 'I am a boss too', location: {city: 'Moscow', country: 'Russia'}},
-  //   {id: 3,photoURL: photoUrl, followed: false, fullName: 'Petr', status: 'cleaner', location: {city: 'Miory', country: 'Belarus'}},
-  //   {id: 4,photoURL: photoUrl, followed: false, fullName: 'Anastasiya', status: 'econoomist', location: {city: 'Minsk', country: 'Belarus'}},
-  //   {id: 5,photoURL: photoUrl, followed: true, fullName: 'olga', status: 'secretary', location: {city: 'Borisov', country: 'Belarus'}},
-  //   {id: 6,photoURL: photoUrl, followed: false, fullName: 'Vadim', status: 'driver', location: {city: 'Grodno', country: 'Belarus'}},
-  // ]
-  users: []
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 0,
+  currentPage: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -28,13 +24,24 @@ const usersReducer = (state = initialState, action) => {
         })
       }
     case SET_USERS: {
-      return {...state, users: [...state.users, ...action.users]}
+      return {...state, users: action.users}
     }
+
+    case SET_CURRENT_PAGE: {
+      return {...state, currentPage: action.currentPage}
+    }
+
+    case SET_TOTAL_USER_COUNT: {
+      return {...state, totalUsersCount: action.totalUsersCount}
+    }
+
     default: return state;
   }
 }
 
 export const toggleFollowAC = (userId) => ({type: TOGGLE_FOLLOW, userId})
 export const setUserAC = (users) => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USER_COUNT, totalUsersCount })
 
 export default usersReducer;
