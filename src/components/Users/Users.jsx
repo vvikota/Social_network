@@ -54,8 +54,6 @@ const Users = (props) => {
                   }
                 });
             }
-
-
           }}
         >
           { user.followed ? 'Unfollow' : 'Follow'}

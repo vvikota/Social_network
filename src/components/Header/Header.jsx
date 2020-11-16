@@ -4,7 +4,6 @@ import style from './Header.module.css';
 const logoImg = 'https://image.shutterstock.com/image-vector/vi-logo-initial-triangle-260nw-1202514451.jpg';
 
 const Header = (props) => {
-  console.log(props)
   return (
     <header className={style.header}>
       <img src={logoImg} alt="logo"/>
