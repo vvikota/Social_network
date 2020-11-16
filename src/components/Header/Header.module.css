@@ -2,8 +2,23 @@
 .header{
   grid-area: h;
   background-color: antiquewhite;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 25px; 
 }
 
 .header img{
   width: 50px;
+}
+
+.loginBlock{
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.loginBlock:hover{
+  text-decoration: underline;
 }

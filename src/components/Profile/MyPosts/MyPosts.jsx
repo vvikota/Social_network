@@ -33,17 +33,17 @@ const MyPosts = (props) => {
 
   return (
 
-    <div>
-      My posts
-      <div>
+    <div className={style.myPosts}>
+      <div className={style.newPostblock}>
         <textarea
+          rows="1"
           onChange={onPostChange}
           ref={newPostElement}
           value={props.newPostText}
         />
-
         <button onClick={onAddPost}>Add post</button>
       </div>
+
       <div className={style.posts}>
         {Posts}
       </div>

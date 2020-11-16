@@ -1,5 +1,35 @@
-.posts {
+
+.myPosts{
   padding: 10px;
+}
+
+.newPostblock{
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.newPostblock textarea{
+  width: 80%;
+  padding: 10px;
+  font-size: 18px;
+  resize: vertical;
+  border: none;
+  background-color: #4479D4;
+}
+
+.newPostblock button{
+  padding: 10px;
+  background-color: #00685A;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.newPostblock textarea:active,
+.newPostblock textarea:focus,
+.newPostblock button:active,
+.newPostblock button:focus{
+  outline: none;
 }
 
 .item {

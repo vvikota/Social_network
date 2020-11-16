@@ -2,7 +2,13 @@
 .nav{
   grid-area: n;
   height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
   background-color: lawngreen;
+}
+
+.item{
+  margin-bottom: 5px;
 }
 
 .item a{
