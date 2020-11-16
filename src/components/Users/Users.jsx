@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
+import * as axios from "axios";
+const apiKey = '5c1979ac-0a12-4a40-8271-c23387e118fd'
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -25,7 +27,36 @@ const Users = (props) => {
 
         <button
           className= { user.followed ? styles.unfollow : styles.follow}
-          onClick={() => {props.toggleFollowAC(user.id)}}
+          onClick={() => {
+
+            if (user.followed) {
+              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                withCredentials: true,
+                headers: {
+                  'API-KEY': apiKey
+                }
+              })
+                .then(response => {
+                  if (response.data.resultCode === 0) {
+                    props.toggleFollowAC(user.id)
+                  }
+                });
+            } else {
+              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                withCredentials: true,
+                headers: {
+                  'API-KEY': apiKey
+                }
+              })
+                .then(response => {
+                  if (response.data.resultCode === 0) {
+                    props.toggleFollowAC(user.id)
+                  }
+                });
+            }
+
+
+          }}
         >
           { user.followed ? 'Unfollow' : 'Follow'}
         </button>
@@ -53,8 +84,8 @@ const Users = (props) => {
             className={props.currentPage === page ? styles.currentPage : null}
             onClick={() => props.onPageChanged(page)}
           >
-              {page}
-            </span>
+            {page}
+          </span>
         )
       })}
     </div>
