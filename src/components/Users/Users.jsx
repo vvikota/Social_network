@@ -3,6 +3,7 @@ import styles from './users.module.css';
 import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
 import * as axios from "axios";
+import {usersAPI} from "../../api/api";
 const apiKey = '5c1979ac-0a12-4a40-8271-c23387e118fd'
 
 const Users = (props) => {
@@ -30,24 +31,14 @@ const Users = (props) => {
           onClick={() => {
 
             if (user.followed) {
-              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                withCredentials: true,
-                headers: {
-                  'API-KEY': apiKey
-                }
-              })
+              usersAPI.unfollow(user.id)
                 .then(response => {
                   if (response.data.resultCode === 0) {
                     props.toggleFollowAC(user.id)
                   }
                 });
             } else {
-              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                withCredentials: true,
-                headers: {
-                  'API-KEY': apiKey
-                }
-              })
+              usersAPI.follow(user.id)
                 .then(response => {
                   if (response.data.resultCode === 0) {
                     props.toggleFollowAC(user.id)
