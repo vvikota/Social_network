@@ -9,25 +9,25 @@ import {
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { getUsers } from '../../api/api';
+import {getUsers, usersAPI} from '../../api/api';
  
 class UsersContainer extends React.Component{
 
   componentDidMount() {
     this.props.toggleIsFetching(true);
-    getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
         this.props.toggleIsFetching(false)
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setUsers(response.items);
+        this.props.setTotalUsersCount(response.totalCount);
     })
   }
 
   onPageChanged = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
-    getUsers(pageNumber, this.props.pageSize).then(response => {
+    usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
         this.props.toggleIsFetching(false);
-        this.props.setUsers(response.data.items);
+        this.props.setUsers(response.items);
 
       })
   }
