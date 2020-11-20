@@ -47,6 +47,11 @@
   outline: none;
 }
 
+.photoBlock button:disabled{
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .userInformation{
   padding: 10px;
 }

@@ -4,7 +4,7 @@ import userPhoto from '../../assets/images/user.png';
 import { NavLink } from 'react-router-dom';
 import * as axios from "axios";
 import {usersAPI} from "../../api/api";
-const apiKey = '5c1979ac-0a12-4a40-8271-c23387e118fd'
+// const apiKey = '5c1979ac-0a12-4a40-8271-c23387e118fd'
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -27,24 +27,27 @@ const Users = (props) => {
         </NavLink>  
 
         <button
+          // disabled={true}
+          disabled={props.followingInProgress.some(id => id === user.id)}
           className= { user.followed ? styles.unfollow : styles.follow}
           onClick={() => {
-
-            if (user.followed) {
-              usersAPI.unfollow(user.id)
-                .then(response => {
-                  if (response.data.resultCode === 0) {
-                    props.toggleFollowAC(user.id)
-                  }
-                });
-            } else {
+            props.toggleFollowingProgress(true, user.id)
+            // debugger;
+              user.followed ?
+                usersAPI.unfollow(user.id)
+                  .then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.toggleFollowAC(user.id)
+                    }
+                    props.toggleFollowingProgress(false, user.id)
+                  }) :
               usersAPI.follow(user.id)
                 .then(response => {
                   if (response.data.resultCode === 0) {
                     props.toggleFollowAC(user.id)
                   }
+                  props.toggleFollowingProgress(false, user.id)
                 });
-            }
           }}
         >
           { user.followed ? 'Unfollow' : 'Follow'}
