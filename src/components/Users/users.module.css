@@ -106,3 +106,8 @@
   left: 50%;
   transform: translate( -100%, -50%);
 }
+
+.slick-prev::before,
+.slick-next::before {
+  content: "";
+}
