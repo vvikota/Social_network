@@ -98,3 +98,4 @@ export const changeFollowed = (isFollowed, userId) => {
   }
 }
 
+export default usersReducer;
