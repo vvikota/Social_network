@@ -1,12 +1,10 @@
-import {
-  sendMessageCreator,
-  updateNewMessageCreator
-} from "../../redux/dialogs-reducer";
+import {sendMessageCreator, updateNewMessageCreator} from "../../redux/dialogs-reducer";
 import { connect } from "react-redux";
 import Dialogs from "./Dialogs";
 
 let mapStateToProps = (state) => ({
-  messagesPage: state.messagesPage
+  messagesPage: state.messagesPage,
+  isAuth: state.auth.isAuth
 })
 
 let mapDispatchToProps = (dispatch) => ({

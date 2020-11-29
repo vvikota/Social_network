@@ -76,3 +76,7 @@ GET-POST-PUT-DELETE (CRUD)
 
 ## redux-thunk
 thunk - это функция, которая принимает dispatch и делает асинхронную задачу и умеет диспатчить экшены
+
+## Redirect
+`return <Redirect to={"/login"} />;`
+редирект на страницу логин, при этом нужно импортнуть Redirect из "react-router-dom"
