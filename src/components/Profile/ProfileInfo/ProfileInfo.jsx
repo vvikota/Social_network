@@ -23,10 +23,10 @@ const ProfileInfo = (props) => {
       <div className={style.profileText}>
         <h2>{props.profile.fullName}</h2>
         <span>Статус поиска работы: {props.profile.lookingForAJobDescription}</span>
-        <ProfileStatus status={`свободен как птица`} />
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       </div>
     </div>
   )
 };
 
-export default ProfileInfo
+export default ProfileInfo;
