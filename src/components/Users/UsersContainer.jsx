@@ -49,13 +49,6 @@ let MapStateToProps = (state) => ({
   followingInProgress: state.usersPage.followingInProgress
 })
 
-<<<<<<< HEAD
-=======
-// export default connect(MapStateToProps, {
-//   toggleFollowAC, setCurrentPage, toggleFollowingProgress, getUsers, changeFollowed
-// })(UsersContainer);
-
->>>>>>> b44a236aad59e5ac757ad375f72e065414c37ece
 export default compose(
   withAuthRedirect,
   connect(MapStateToProps, {
