@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './MyPosts.module.css';
+import {Field, reduxForm} from 'redux-form';
 
 const Post = (props) => {
   return (
@@ -20,36 +21,36 @@ const MyPosts = (props) => {
       like={el.likesCount}
       key={index}
     />);
-  let newPostElement = React.createRef();
+  // let newPostElement = React.createRef();
 
-  let onAddPost = () => {
-    props.addPost();
-  };
+  // let onAddPost = () => {
+  //   props.addPost();
+  // };
 
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
-  };
+  let onAddPost = (values) => {
+    props.addPost(values.newPostText);
+  }
 
   return (
 
     <div className={style.myPosts}>
-      <div className={style.newPostblock}>
-        <textarea
-          rows="1"
-          onChange={onPostChange}
-          ref={newPostElement}
-          value={props.newPostText}
-        />
-        <button onClick={onAddPost}>Add post</button>
-      </div>
-
+     <AddNewPostForm onSubmit={onAddPost}/>
       <div className={style.posts}>
         {Posts}
       </div>
     </div>
-
   )
 };
 
-export default MyPosts
+let AddNewPostForm = (props) => {
+  return (
+    <form className={style.newPostblock} onSubmit={props.handleSubmit}>
+      <Field name="newPostText" component="textarea" />
+      <button>Add post</button>
+    </form>
+  )
+}
+
+AddNewPostForm = reduxForm({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
+
+export default MyPosts;
