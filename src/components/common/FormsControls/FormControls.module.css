@@ -1,0 +1,16 @@
+.formControl.error{
+  position: relative;
+}
+
+.formControl.error input,
+.formControl.error textarea{
+  border: 3px solid red;
+}
+
+.formControl.error span {
+  position: absolute;
+  right: 50px;
+  bottom: -11px;
+  font-size: 14px;
+  color: red;
+}

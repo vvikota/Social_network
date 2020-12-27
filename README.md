@@ -90,3 +90,5 @@ thunk - это функция, которая принимает dispatch и д�
                         `this.setState({
                                editMode: true
                          })`
+## redux-form
+Подключается отсюда https://redux-form.com/8.3.0/
