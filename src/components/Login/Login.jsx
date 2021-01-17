@@ -5,6 +5,7 @@ import {required} from '../../utils/validators/validators';
 import { connect } from 'react-redux';
 import {login} from '../../redux/auth-reducer';
 import {Redirect} from "react-router-dom";
+import style from './Login.module.css';
 
 
 const LoginForm = (props) => {
@@ -35,6 +36,7 @@ const LoginForm = (props) => {
           validate={[required]}
         /> remember me
       </div>
+      { props.error && <span className={style.formSummaryError}>{props.error}</span>}
       <button>Login</button>
     </form>
   ) 
@@ -47,7 +49,6 @@ const Login = (props) => {
     console.log(formData);
     props.login(formData.email, formData.password, formData.rememberMe);
   }
-
 
   if(props.isAuth) {
     return <Redirect to={"/profile"} />
