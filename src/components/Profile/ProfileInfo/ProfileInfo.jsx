@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const backGround = "https://kogdakotika.net/media/post_images/title_page_m_ChtRYfI.jpg";
 
@@ -23,7 +23,7 @@ const ProfileInfo = (props) => {
       <div className={style.profileText}>
         <h2>{props.profile.fullName}</h2>
         <span>Статус поиска работы: {props.profile.lookingForAJobDescription}</span>
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
       </div>
     </div>
   )
