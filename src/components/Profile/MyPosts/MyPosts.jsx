@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import style from './MyPosts.module.css';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
@@ -16,9 +16,14 @@ const Post = (props) => {
   )
 };
 
-const MyPosts = (props) => {
+class MyPosts extends Component {
 
-  let Posts = props.posts.map((el, index) =>
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps != this.props || nextState != this.state;
+  }
+
+  render(){
+    let Posts = this.props.posts.map((el, index) =>
     <Post
       id = {el.id}
       message={el.message}
@@ -26,19 +31,19 @@ const MyPosts = (props) => {
       key={index}
     />);
 
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
-  }
+    let onAddPost = (values) => {
+      this.props.addPost(values.newPostText);
+    }
 
-  return (
-
-    <div className={style.myPosts}>
-     <AddNewPostForm onSubmit={onAddPost}/>
-      <div className={style.posts}>
-        {Posts}
+    return (
+      <div className={style.myPosts}>
+      <AddNewPostForm onSubmit={onAddPost}/>
+        <div className={style.posts}>
+          {Posts}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 };
 
 let AddNewPostForm = (props) => {
