@@ -4,12 +4,13 @@ const ADD_POST = 'ADD-POST';
 // const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
   posts: [
     {id: 1, message: 'First post!', likesCount: 1},
-    {id: 1, message: 'Second post', likesCount: 3},
-    {id: 1, message: 'My post', likesCount: 7},
+    {id: 2, message: 'Second post', likesCount: 3},
+    {id: 3, message: 'My post', likesCount: 7},
   ],
   // newPostText: 'React samurai',
   profile: null,
@@ -45,6 +46,10 @@ const profileReducer = (state = initialState, action) => {
       return {...state, status: action.status}
     }
 
+    case DELETE_POST: {
+      return {...state, posts: state.posts.filter(post => post.id != action.postId) }
+    }
+
     default:
       return state;
   }
@@ -55,6 +60,7 @@ export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostT
 //   {type: UPDATE_NEW_POST_TEXT, newText: text});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId).then(response => {
