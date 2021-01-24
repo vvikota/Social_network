@@ -11,13 +11,10 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import { connect } from 'react-redux';
-// import { getAuthUserData} from './redux/auth-reducer';
 import {initializeApp} from './redux/app-reducer';
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import Preloader from "./components/common/Preloader/Preloader.jsx";
-// import { getAuthUserData, logout } from '../../redux/auth-reducer';
-
 class App extends Component {
 
   componentDidMount() {

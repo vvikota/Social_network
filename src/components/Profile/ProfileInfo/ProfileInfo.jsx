@@ -5,8 +5,8 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const backGround = "https://kogdakotika.net/media/post_images/title_page_m_ChtRYfI.jpg";
 
-const ProfileInfo = (props) => {
-  if(!props.profile) {
+const ProfileInfo = ({profile,status,updateStatus}) => {
+  if(!profile) {
     return <Preloader />
   }
   // debugger;
@@ -16,14 +16,14 @@ const ProfileInfo = (props) => {
       style={ {backgroundImage: `url(${backGround})`} }
     >
       <img 
-        src={props.profile.photos.large}
+        src={profile.photos.large}
         alt="userPhoto"
         className={style.profilePhoto}
       />
       <div className={style.profileText}>
-        <h2>{props.profile.fullName}</h2>
-        <span>Статус поиска работы: {props.profile.lookingForAJobDescription}</span>
-        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+        <h2>{profile.fullName}</h2>
+        <span>Статус поиска работы: {profile.lookingForAJobDescription}</span>
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
       </div>
     </div>
   )

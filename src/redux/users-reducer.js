@@ -78,17 +78,15 @@ export const requestUsers = (currentPage, pageSize) => {
 export const changeFollowed = (isFollowed, userId) => {
   return async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
-    // let response;
+    
+    let response;
 
-    if(isFollowed){
-      const response = await usersAPI.unfollow(userId);
-      if (response.data.resultCode === 0) {dispatch(toggleFollowAC(userId));}
-      dispatch(toggleFollowingProgress(false, userId));    
-    } else {
-      const response = await usersAPI.follow(userId)
-      if (response.data.resultCode === 0) {dispatch(toggleFollowAC(userId));}
-      dispatch(toggleFollowingProgress(false, userId));
-    } 
+    isFollowed ?
+      response = await usersAPI.unfollow(userId) : 
+      response = await usersAPI.follow(userId);
+
+    (response.data.resultCode === 0) && dispatch(toggleFollowAC(userId));
+    dispatch(toggleFollowingProgress(false, userId));    
   }
 }
 
