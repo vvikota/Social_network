@@ -4,22 +4,32 @@ import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
 const Users = (props) => {
+  const {
+    users,
+    followingInProgress,
+    changeFollowed,
+    totalUsersCount,
+    pageSize,
+    onPageChanged,
+    currentPage
+  } = props;
+
   return <section className={styles.users}>
-    {props.users.map(user =>
+    {users.map(user =>
       <div key={user.id} className={styles.userCard}>
         <User 
           user={user} 
-          followingInProgress={props.followingInProgress}
-          changeFollowed={props.changeFollowed}
+          followingInProgress={followingInProgress}
+          changeFollowed={changeFollowed}
         />
       </div>
     )}
 
     <Paginator 
-      totalItemsCount={props.totalUsersCount}
-      pageSize={props.pageSize}
-      onPageChanged={props.onPageChanged}
-      currentPage={props.currentPage}
+      totalItemsCount={totalUsersCount}
+      pageSize={pageSize}
+      onPageChanged={onPageChanged}
+      currentPage={currentPage}
     />
   </section>
 }

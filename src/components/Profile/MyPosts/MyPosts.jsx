@@ -7,6 +7,8 @@ import { Textarea } from '../../common/FormsControls/FormControls';
 const maxLength10 = maxLengthCreator(10);
 
 const Post = (props) => {
+  const {message,like} = props;
+
   return (
     <div className={style.item}>
       <img 
@@ -14,8 +16,8 @@ const Post = (props) => {
         alt="pic" 
         className={style.ava} 
       />
-      {props.message}<br/>
-      <span>Like: {props.like}</span>
+      {message}<br/>
+      <span>Like: {like}</span>
     </div>
   )
 };
@@ -27,7 +29,9 @@ class MyPosts extends Component {
   }
 
   render(){
-    let Posts = this.props.posts.map((el, index) =>
+    const {posts, addPost} = this.props
+
+    let Posts = posts.map((el, index) =>
     <Post
       id = {el.id}
       message={el.message}
@@ -36,7 +40,7 @@ class MyPosts extends Component {
     />);
 
     let onAddPost = (values) => {
-      this.props.addPost(values.newPostText);
+      addPost(values.newPostText);
     }
 
     return (
