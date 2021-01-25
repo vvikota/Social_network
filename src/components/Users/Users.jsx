@@ -3,8 +3,8 @@ import styles from './users.module.css';
 import Paginator from '../common/Paginator/Paginator';
 import User from './User';
 
-const Users = (props) => 
-  <section className={styles.users}>
+const Users = (props) => {
+  return <section className={styles.users}>
     {props.users.map(user =>
       <div key={user.id} className={styles.userCard}>
         <User 
@@ -16,11 +16,12 @@ const Users = (props) =>
     )}
 
     <Paginator 
-      totalUsersCount={props.totalUsersCount}
+      totalItemsCount={props.totalUsersCount}
       pageSize={props.pageSize}
       onPageChanged={props.onPageChanged}
       currentPage={props.currentPage}
     />
   </section>
+}
 
 export default Users;

@@ -5,11 +5,17 @@
 
 .newPostblock{
   display: flex;
+  width: calc(50% + 200px);
   margin-bottom: 25px;
 }
 
+.newPostblock div{
+  width: 100%;
+  margin-right: 5px;
+}
+
 .newPostblock textarea{
-  width: 80%;
+  width: 91%;
   padding: 10px;
   font-size: 18px;
   resize: vertical;
@@ -19,6 +25,8 @@
 }
 
 .newPostblock button{
+  width: 95px;
+  height: 35px;
   padding: 10px;
   background-color: #00685A;
   border: none;

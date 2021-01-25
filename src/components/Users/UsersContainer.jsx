@@ -40,7 +40,6 @@ class UsersContainer extends React.Component{
       isFetching,
       totalUsersCount,
       pageSize,
-      onPageChanged,
       users,
       toggleFollowAC,
       followingInProgress,
@@ -54,7 +53,7 @@ class UsersContainer extends React.Component{
         totalUsersCount={totalUsersCount}
         pageSize={pageSize}
         currentPage={currentPage}
-        onPageChanged={onPageChanged}
+        onPageChanged={this.onPageChanged}
         users={users}
         toggleFollowAC={toggleFollowAC}
         followingInProgress={followingInProgress}
