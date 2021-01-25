@@ -2,8 +2,7 @@ import React from 'react';
 import style from './ProfileStatus.module.css';
 
 class ProfileStatus extends React.Component {
-  // statusInputRef = React.createRef()
-  
+
   state = {
     editMode: false,
     status: this.props.status
@@ -29,7 +28,7 @@ class ProfileStatus extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.status !==this.props.status) {
+    if(prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status
       });
@@ -45,7 +44,6 @@ class ProfileStatus extends React.Component {
                 {this.props.status || 'no status'}
             </span> :
             <input
-              // ref={this.statusInputRef}
               onChange={this.onStatusChange}
               autoFocus={true}
               onBlur={this.deactivateEditMode}
