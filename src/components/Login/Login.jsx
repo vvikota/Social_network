@@ -8,35 +8,37 @@ import {Redirect} from "react-router-dom";
 import style from './Login.module.css';
 
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error}) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit}>
+      
         <Field 
           placeholder={"Email"}
           name={"email"}
           component={Input}
           validate={[required]}
         />
-      </div>
-      <div>
+     
         <Field
           placeholder={"Password"}
           name={"password"}
           component={Input}
           validate={[required]}
           type={"password"}
+          autoComplete="true"
         />
-      </div>
-      <div>
-        <Field
-          name={"rememberMe"}
-          type={"checkbox"}
-          component={Input}
-          validate={[required]}
-        /> remember me
-      </div>
-      { props.error && <span className={style.formSummaryError}>{props.error}</span>}
+   
+        <div className={style.checkboxWrapper}>
+          <Field
+            name={"rememberMe"}
+            type={"checkbox"}
+            component={Input}
+            validate={[required]}
+          /> remember me
+        </div>
+       
+
+      { error && <span className={style.formSummaryError}>{error}</span>}
       <button>Login</button>
     </form>
   ) 
@@ -44,13 +46,12 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
   const onSubmit = (formData) => {
-    // console.log(formData);
-    props.login(formData.email, formData.password, formData.rememberMe);
+    login(formData.email, formData.password, formData.rememberMe);
   }
 
-  if(props.isAuth) {
+  if(isAuth) {
     return <Redirect to={"/profile"} />
   }
 

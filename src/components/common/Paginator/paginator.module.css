@@ -1,0 +1,19 @@
+.pagination{
+  max-width: 222px;
+  overflow-x: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.pagination span{
+  margin-right: 5px;
+  padding: 3px;
+  border: 1px solid darkgreen;
+  cursor: pointer;
+}
+
+.pagination span.currentPage{
+  font-weight: bold;
+  background-color: darkkhaki;
+  cursor: auto;
+}

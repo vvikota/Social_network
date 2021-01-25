@@ -1,5 +1,5 @@
 import preloader from "../../../assets/images/loading.gif";
-import styles from "../../Users/users.module.css";
+import styles from "./preloader.module.css";
 import React from "react";
 
 const Preloader = () => {

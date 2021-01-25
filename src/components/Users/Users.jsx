@@ -1,65 +1,26 @@
 import React from 'react';
 import styles from './users.module.css';
-import userPhoto from '../../assets/images/user.png';
-import { NavLink } from 'react-router-dom';
+import Paginator from '../common/Paginator/Paginator';
+import User from './User';
 
-const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  let pages = [];
-
-  for (let i=1; i <= pagesCount; i++) {
-    pages.push(i)
-  }
-
-  return <section className={styles.users}>
-    {props.users.map(user => <div key={user.id} className={styles.userCard}>
-
-      <div className={styles.photoBlock}>
-        <NavLink to={'/profile/' + user.id}>
-          <img
-            src={user.photos.small === null ? userPhoto : user.photos.small}
-            alt="user-img"
-            className={styles.photo}
-          />
-        </NavLink>  
-
-        <button
-          disabled={props.followingInProgress.some(id => id === user.id)}
-          className= { user.followed ? styles.unfollow : styles.follow}
-          onClick={() => {props.changeFollowed(user.followed, user.id)}}
-        >
-          { user.followed ? 'Unfollow' : 'Follow'}
-        </button>
-
+const Users = (props) => 
+  <section className={styles.users}>
+    {props.users.map(user =>
+      <div key={user.id} className={styles.userCard}>
+        <User 
+          user={user} 
+          followingInProgress={props.followingInProgress}
+          changeFollowed={props.changeFollowed}
+        />
       </div>
+    )}
 
-      <div className={styles.userInformation}>
-        <div>
-          <span className={styles.name}>{user.name}</span>
-          <span className={styles.status}>{user.status}</span>
-        </div>
-
-        <div>
-          <span className={styles.country}>{user.id}</span>
-          <span className={styles.city}>{user.uniqueUrlName}</span>
-        </div>
-      </div>
-    </div>)}
-
-    <div className={styles.pagination}>
-      {pages.map((page, index) => {
-        return (
-          <span
-            key={index}
-            className={props.currentPage === page ? styles.currentPage : null}
-            onClick={() => props.onPageChanged(page)}
-          >
-            {page}
-          </span>
-        )
-      })}
-    </div>
+    <Paginator 
+      totalUsersCount={props.totalUsersCount}
+      pageSize={props.pageSize}
+      onPageChanged={props.onPageChanged}
+      currentPage={props.currentPage}
+    />
   </section>
-}
 
 export default Users;

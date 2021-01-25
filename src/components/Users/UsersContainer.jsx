@@ -21,28 +21,45 @@ import {
 } from "../../redux/users-selectors";
  
 class UsersContainer extends React.Component{
+  
+
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+    const {requestUsers, currentPage, pageSize} = this.props;
+    requestUsers(currentPage, pageSize)
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.requestUsers(pageNumber, this.props.pageSize)
+    const {setCurrentPage, requestUsers} = this.props;
+    setCurrentPage(pageNumber);
+    requestUsers(pageNumber, this.props.pageSize)
   }
 
   render(){
+    const {
+      currentPage,
+      isFetching,
+      totalUsersCount,
+      pageSize,
+      onPageChanged,
+      users,
+      toggleFollowAC,
+      followingInProgress,
+      toggleFollowingProgress,
+      changeFollowed
+    } = this.props;
+
     return <>
-      { this.props.isFetching ? <Preloader /> : null}
+      { isFetching ? <Preloader /> : null}
       <Users
-        totalUsersCount={this.props.totalUsersCount}
-        pageSize={this.props.pageSize}
-        currentPage={this.props.currentPage}
-        onPageChanged={this.onPageChanged}
-        users={this.props.users}
-        toggleFollowAC={this.props.toggleFollowAC}
-        followingInProgress={this.props.followingInProgress}
-        toggleFollowingProgress={this.props.toggleFollowingProgress}
-        changeFollowed={this.props.changeFollowed}
+        totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+        users={users}
+        toggleFollowAC={toggleFollowAC}
+        followingInProgress={followingInProgress}
+        toggleFollowingProgress={toggleFollowingProgress}
+        changeFollowed={changeFollowed}
       />
   </>
   }
