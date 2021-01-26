@@ -30,7 +30,7 @@ const ProfileInfo = ({profile,status,updateStatus,isOwner,savePhoto}) => {
         />
         {isOwner &&
           <label className={style.downloadLabel}>
-            <input type={"file"}/>
+            <input type={"file"} onChange={onMainPhotoSelected}/>
             Загрузить аватар
           </label>
         }

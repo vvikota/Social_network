@@ -4,7 +4,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = (props) => {
-  const {isOwner,profile,status,updateStatus} = props;
+  const {isOwner, profile, status, updateStatus, savePhoto} = props;
 
   return(
     <div className={style.content}>
@@ -13,7 +13,7 @@ const Profile = (props) => {
         profile={profile}
         status={status}
         updateStatus={updateStatus}
-        savePhoto={props.savePhoto}
+        savePhoto={savePhoto}
       />
       <MyPostsContainer />
     </div>
