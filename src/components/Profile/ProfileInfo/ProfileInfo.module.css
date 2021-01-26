@@ -19,10 +19,27 @@
   border-radius: 50%;
 }
 
-
 .profileText h2,
 .profileText span{
   padding: 5px;
   background-color: cyan;
   border-radius: 3px;
+}
+
+.avatarWrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.avatarWrapper input{
+  opacity: 0;
+  width: 0;
+}
+
+.downloadLabel{
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid goldenrod;
+  background-color: gray;
+  text-align: center;
 }
