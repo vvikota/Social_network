@@ -19,6 +19,16 @@
   border-radius: 50%;
 }
 
+.profileText{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.profileText span{
+  margin-top: 15px;
+}
+
 .profileText h2,
 .profileText span{
   padding: 5px;
@@ -42,4 +52,12 @@
   border: 1px solid goldenrod;
   background-color: gray;
   text-align: center;
+}
+
+.profileContacts{
+  margin-left: 15px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 3px;
+  background-color: bisque;
 }
