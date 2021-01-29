@@ -1,0 +1,19 @@
+.statusContainer {
+  margin-top: 15px;
+  background-color: cornsilk;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.statusContainer input{
+  width: 100%;
+  opacity: 1;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: none;
+}
+
+.statusContainer input:hover,
+.statusContainer input:focus {
+  outline: none;
+}

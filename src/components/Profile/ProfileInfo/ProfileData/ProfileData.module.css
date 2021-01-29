@@ -1,0 +1,65 @@
+.profileDataWrapper{
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.profileText span {
+  margin-top: 15px;
+}
+
+.profileText h2,
+.profileText span {
+  padding: 5px;
+  background-color: cyan;
+  border-radius: 3px;
+}
+
+.profileText h2{
+  margin: 0;
+}
+
+.profileContacts {
+  margin-left: 15px;
+  padding: 15px;
+  border-radius: 3px;
+  background-color: aqua;
+}
+
+.profileContacts h4{
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.dataWrapper {
+  display: flex;
+}
+
+.editButton {
+  align-self: flex-end;
+  width: 50px;
+  margin-top: 10px;
+  padding: 5px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  color: cyan;
+  border: none;
+  border-radius: 3px;
+  background-color: cornflowerblue;
+  cursor: pointer;
+}
+
+.contactWrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.contactTitle{
+  margin-right: 10px;
+}

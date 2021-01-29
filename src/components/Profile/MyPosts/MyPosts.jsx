@@ -3,24 +3,9 @@ import style from './MyPosts.module.css';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import { Textarea } from '../../common/FormsControls/FormControls';
+import Post from './Post/Post';
 
 const maxLength10 = maxLengthCreator(10);
-
-const Post = (props) => {
-  const {message,like} = props;
-
-  return (
-    <div className={style.item}>
-      <img 
-        src="https://img09.rl0.ru/afisha/-x700/s1.afisha.net/MediaStorage/aa/8f/a06740b631464edaa4cf83768faa.jpg"
-        alt="pic" 
-        className={style.ava} 
-      />
-      {message}<br/>
-      <span>Like: {like}</span>
-    </div>
-  )
-};
 
 class MyPosts extends Component {
 
@@ -45,10 +30,8 @@ class MyPosts extends Component {
 
     return (
       <div className={style.myPosts}>
-      <AddNewPostForm onSubmit={onAddPost}/>
-        <div className={style.posts}>
-          {Posts}
-        </div>
+        <AddNewPostForm onSubmit={onAddPost}/>
+        {Posts}
       </div>
     )
   }

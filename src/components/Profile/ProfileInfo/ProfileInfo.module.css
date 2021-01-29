@@ -5,6 +5,7 @@
 
 .profileDecsription{
   display: flex;
+  justify-content: space-between;
   min-height: 250px;
   margin-bottom: 25px;
   padding: 5px;
@@ -15,7 +16,6 @@
 .profilePhoto{
   width: 150px;
   height: 150px;
-  margin-right: 25px;
   border-radius: 50%;
 }
 
@@ -37,8 +37,10 @@
 }
 
 .avatarWrapper{
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin-right: 25px;
 }
 
 .avatarWrapper input{
@@ -47,11 +49,16 @@
 }
 
 .downloadLabel{
-  padding: 3px;
-  border-radius: 3px;
-  border: 1px solid goldenrod;
-  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  align-self: center;
+  padding: 0 3px;
+  font-size: 12px;
   text-align: center;
+  border-radius: 3px;
+  background-color:aqua;
+  cursor: pointer;
 }
 
 .profileContacts{

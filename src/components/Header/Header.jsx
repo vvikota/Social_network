@@ -8,9 +8,14 @@ const Header = (props) => {
   return (
     <header className={style.header}>
       <img src={logoImg} alt="logo"/>
-      {isAuth ?
-        <span>{login} - <button onClick={logout}>Log out</button></span> :
-        <NavLink className={style.loginBlock} to={'/login'}>Login</NavLink>
+      {isAuth ? (
+        <span>
+          {login}
+          <button onClick={logout} className={style.logoutButton}>Log out</button>
+        </span>
+        ) : (
+          <NavLink className={style.loginBlock} to={'/login'}>Login</NavLink>
+        )
       }
     </header>)
 };

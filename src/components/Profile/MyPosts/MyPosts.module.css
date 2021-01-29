@@ -5,8 +5,12 @@
 
 .newPostblock{
   display: flex;
-  width: calc(50% + 200px);
+  flex-direction: column;
+  width: 100%;
   margin-bottom: 25px;
+  box-sizing: border-box;
+  border-bottom: 1px solid yellowgreen;
+  padding-bottom: 10px;
 }
 
 .newPostblock div{
@@ -15,22 +19,25 @@
 }
 
 .newPostblock textarea{
-  width: 91%;
+  width: 100%;
   padding: 10px;
   font-size: 18px;
   resize: vertical;
   border: none;
   background-color: #4479D4;
-  border: 3px solid #4479D4;;
+  border: 3px solid #4479D4;
+  box-sizing: border-box;
 }
 
 .newPostblock button{
+  align-self: flex-end;
   width: 95px;
   height: 35px;
   padding: 10px;
+  margin-top: 5px;
+  font-weight: bold;
   background-color: #00685A;
   border: none;
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -39,18 +46,4 @@
 .newPostblock button:active,
 .newPostblock button:focus{
   outline: none;
-}
-
-.item {
-  width: 50%;
-  margin-bottom: 10px;
-  padding: 5px;
-  border: 2px solid greenyellow;
-  border-radius: 10px;
-}
-
-.item img{
-  width: 50px;
-  height: 50px;
-  border-radius: 10px;
 }

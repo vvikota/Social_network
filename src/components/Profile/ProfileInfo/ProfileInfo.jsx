@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 import userPhoto from '../../../assets/images/user.png';
+import ProfileData from './ProfileData/ProfileData';
 import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
 
 const backGround = "https://kogdakotika.net/media/post_images/title_page_m_ChtRYfI.jpg";
@@ -37,6 +38,7 @@ const ProfileInfo = (props) => {
       style={ {backgroundImage: `url(${backGround})`} }
     >
       <div className={style.avatarWrapper}>
+        <div className={style.avatarWrapper}>
         <img 
           src={profile.photos.large || userPhoto}
           alt="userPhoto"
@@ -48,54 +50,27 @@ const ProfileInfo = (props) => {
             Download avatar
           </label>
         }
+        </div>
+        
+          <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
       </div>
 
-      { editMode ? (
+      { editMode &&
         <ProfileDataForm
           initialValues={profile}
           profile = {profile}
           onSubmit={onSubmit} 
         />
-        ) : (
-        <ProfileData
-          profile={profile}
-          isOwner={isOwner}
-          goToEditMode={() => setEditMode(true)}
-        />)
-      }
- 
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+      }  
+
+      <ProfileData
+        profile={profile}
+        isOwner={isOwner}
+        goToEditMode={() => setEditMode(true)}
+      />
+
     </div>
   )
 };
-
-const ProfileData = ({profile, isOwner, goToEditMode}) => {
-
-  return <>
-    {isOwner && <button onClick={goToEditMode}>edit</button>}
-    <div className={style.profileText}>
-      <h2>{profile.fullName}</h2>
-      <span>My skills: {profile.lookingForAJobDescription}</span>
-      <span>About me: {profile.aboutMe}</span>
-    </div>
-
-    <div className={style.profileContacts}>
-      <h4>Contacts</h4>
-
-      {Object.keys(profile.contacts)
-        .map(key => 
-          <Contact contactTitle={key} contactValue={profile.contacts[key]} key={key}/>
-        )
-      }
-    </div>
-  </>
-}
-
-const Contact = ({contactTitle, contactValue}) => {
-  return <div>
-    <span className={style.contactTitle}>{contactTitle}</span>:
-    <span className={style.contactValue}>{contactValue}</span>
-  </div>
-}
 
 export default ProfileInfo;
