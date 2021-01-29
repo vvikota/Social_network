@@ -7,7 +7,9 @@ import ProfileDataForm from './ProfileDataForm/ProfileDataForm';
 
 const backGround = "https://kogdakotika.net/media/post_images/title_page_m_ChtRYfI.jpg";
 
-const ProfileInfo = ({profile,status,updateStatus,isOwner,savePhoto}) => {
+const ProfileInfo = (props) => {
+
+  const {profile, status, updateStatus, isOwner, savePhoto, saveProfile} = props;
 
   let [editMode, setEditMode ] = useState(false);
 
@@ -20,6 +22,14 @@ const ProfileInfo = ({profile,status,updateStatus,isOwner,savePhoto}) => {
       savePhoto(e.target.files[0]);
     }
   }
+
+  const onSubmit = (formData) => {
+    saveProfile(formData).then(
+      () => {
+        setEditMode(false);
+      }
+    )
+  };
 
   return(
     <div 
@@ -40,13 +50,18 @@ const ProfileInfo = ({profile,status,updateStatus,isOwner,savePhoto}) => {
         }
       </div>
 
-      { editMode ?
-        <ProfileDataForm /> :
+      { editMode ? (
+        <ProfileDataForm
+          initialValues={profile}
+          profile = {profile}
+          onSubmit={onSubmit} 
+        />
+        ) : (
         <ProfileData
           profile={profile}
           isOwner={isOwner}
           goToEditMode={() => setEditMode(true)}
-        />
+        />)
       }
  
       <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
@@ -60,7 +75,7 @@ const ProfileData = ({profile, isOwner, goToEditMode}) => {
     {isOwner && <button onClick={goToEditMode}>edit</button>}
     <div className={style.profileText}>
       <h2>{profile.fullName}</h2>
-      <span>Work search status: {profile.lookingForAJobDescription}</span>
+      <span>My skills: {profile.lookingForAJobDescription}</span>
       <span>About me: {profile.aboutMe}</span>
     </div>
 
