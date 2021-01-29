@@ -150,3 +150,7 @@ thunk - это функция, которая принимает dispatch и д�
 Тут описание как подключать https://www.npmjs.com/package/gh-pages
 
 Более просто, вариант на netlify https://www.netlify.com/
+
+## classNames
+для передачи нескольких классов для тега такая запись
+`<div classNames={cn{styles.firstClass, styles.secondClass}}>`
