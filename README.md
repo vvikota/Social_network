@@ -87,9 +87,11 @@ thunk - это функция, которая принимает dispatch и д�
 ## setState 
 Метод асинхронный. Если до вызова setState и после сделать вывод изменяемой части стейта то выводы будут одинаковые,
 с изначальным значением выводимых данных. В метод нужно передать обьект: 
-                        `this.setState({
+                        ```
+                          this.setState({
                                editMode: true
-                         })`
+                          })
+                        ```
 ## redux-form
 Подключается отсюда https://redux-form.com/8.3.0/
 
@@ -114,12 +116,13 @@ thunk - это функция, которая принимает dispatch и д�
 подробная статья https://habr.com/ru/company/ruvds/blog/445276/
 
 запись такого вида:
- `let [status, setStatus] = useState(props.status);
+ ```let [status, setStatus] = useState(props.status);
 
   useEffect(()=> {
       setStatus(props.status);
     }, [props.status]
-  )`
+  )
+  ```
 означает что при отрисовки DOM вызываем функцию setStatus, в квадратных скобках можно передать значение, при езменениии которого будет снова срабатывать хук, в данном случае при изменении  [props.status], будет повторно отрабатывать хук.
 
  ## Virtual DOM
@@ -129,9 +132,11 @@ thunk - это функция, которая принимает dispatch и д�
 
  ## shouldComponentUpdate
  метод жизненного цикла:
- `shouldComponentUpdate(nextProps, nextState) {
+ ```
+ shouldComponentUpdate(nextProps, nextState) {
     return nextProps != this.props || nextState != this.state;
-  }`
+  }
+  ```
 
   сравнивает предыдущие и текущие props/state и возвращет true если они равны, тогда компонента лишний раз не перерисовывается, и false если изменились, тогда происходит перерисовка.
   Компоненту можно создавать на основе React.PureComponent, в нее по умолчанию встроен метод shouldComponentUpdate.
@@ -154,3 +159,64 @@ thunk - это функция, которая принимает dispatch и д�
 ## classNames
 для передачи нескольких классов для тега такая запись
 `<div classNames={cn{styles.firstClass, styles.secondClass}}>`
+
+## TypeScript
+типизация простых типов:
+```
+  let a: number | null = 10;
+  let names: Array<string> = ['valera', 'petr', 'ira'];
+  let names2: string[] = ['valer', 'etr', 'ia'];
+```
+
+создание собственных типов:
+```
+  let sex: 'male' | 'female';
+  sex = 'male';
+```
+
+описание типов для обьектов:
+```
+  type UserType = {
+    sayHello: (message: string) => void,
+    name: string,
+    age: number,
+    sex: 'male' | 'female',
+  }
+
+  const Petr: UserType = {
+    sayHello: (message: string) => alert('yo'),
+    name: 'Petr',
+    age: 12,
+    sex: 'male'
+  }
+```
+
+сделать обьект типом:
+```
+  let initialState = {
+    name: null as string | null,
+    age: null as number | null,
+    isSamurai: null as boolean | null,
+    addresses: [] as Array<UserType>,
+    counter: 0
+  }
+```  
+в обьекте записывается через as
+`export type initialStateType = typeof initialState;`
+
+типизация редьюсеров
+```
+  let GET_TASKS = "APP/GetTASKS";
+  type GetTaskActionType = {
+    id: number,
+    type: typeof GET_TASKS
+  }
+
+  let action: GetTaskActionType = {
+    type: GET_TASKS,
+    id: 13
+  }
+```
+
+## AntDesign
+библиотека UI компонентов для React с готовым дизайном
