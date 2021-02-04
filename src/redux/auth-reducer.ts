@@ -21,7 +21,6 @@ const authReducer = (state : initialStateType = initialState, action: any) : ini
       return {
         ...state,
         ...action.payload,
-        // userId: "sdfsf"
       }
 
     default: return state;

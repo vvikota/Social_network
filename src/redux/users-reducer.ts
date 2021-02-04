@@ -14,7 +14,7 @@ let initialState = {
   totalUsersCount: 0 as number,
   currentPage: 1 as number,
   isFetching: true as boolean,
-  followingInProgress: [] as Array<number> // array of users IDs
+  followingInProgress: [] as Array<number>// array of users IDs
 };
 
 export type InitialStateType = typeof initialState;
