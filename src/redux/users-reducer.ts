@@ -1,5 +1,8 @@
+import { Dispatch } from "react";
+import { ThunkAction } from "redux-thunk";
 import { usersAPI } from "../api/api";
 import { UserType } from "../types/types";
+import { AppStateType } from "./redux-store";
 
 const SET_USERS = 'SET_USERS';
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
@@ -19,7 +22,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+const usersReducer = (state = initialState, action: ActionsType): InitialStateType => {
   switch(action.type) {
     case TOGGLE_FOLLOW:
       return {
@@ -59,6 +62,14 @@ const usersReducer = (state = initialState, action: any): InitialStateType => {
     default: return state;
   }
 }
+
+type ActionsType = 
+  toggleFollowACActionType | 
+  setUsersActionType |
+  setCurrentPageActionType | 
+  setTotalUsersCountActionType |
+  toggleIsFetchingActionType |
+  toggleFollowingProgressActionType
 
 type toggleFollowACActionType = {
   type: typeof TOGGLE_FOLLOW
@@ -103,9 +114,11 @@ type toggleFollowingProgressActionType = {
 export const toggleFollowingProgress = (isFetching: boolean, userId: number): toggleFollowingProgressActionType =>
   ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
+type GetStateType = () => AppStateType
+type DispatchType = Dispatch<ActionsType>
 
 export const requestUsers = (currentPage: number, pageSize: number) => {
-  return async (dispatch: any) => {
+  return async (dispatch: DispatchType, getState: GetStateType) => {
     dispatch(toggleIsFetching(true));
 
     const data = await usersAPI.getUsers(currentPage, pageSize)
@@ -115,8 +128,10 @@ export const requestUsers = (currentPage: number, pageSize: number) => {
   }
 };
 
-export const changeFollowed = (isFollowed: boolean, userId: number) => {
-  return async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
+
+export const changeFollowed = (isFollowed: boolean, userId: number): ThunkType => {
+  return async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
     
     let response;

@@ -10,7 +10,8 @@ let initialState = {
   initialized: false,
 };
 
-const appReducer = (state: initialStateType = initialState, action: any): initialStateType => {
+const appReducer = 
+  (state: initialStateType = initialState, action: initializedSuccessActionType): initialStateType => {
   switch(action.type){
     case INITIALIZED_SUCCESS:
       return {
