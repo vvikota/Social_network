@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import {
-  setCurrentPage,
+  actions,
+  // setCurrentPage,
   requestUsers,
   changeFollowed
 } from "../../redux/users-reducer";
@@ -94,7 +95,9 @@ const MapStateToProps = (state: AppStateType): MapStatePropsType => ({
 export default compose(
   connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(
     MapStateToProps, {
-      setCurrentPage, requestUsers, changeFollowed
+      setCurrentPage: actions.setCurrentPage,
+      requestUsers,
+      changeFollowed
     }
   ),
   withAuthRedirect
