@@ -1,8 +1,9 @@
 import { Dispatch } from "react";
-import { ThunkAction } from "redux-thunk";
-import { usersAPI } from "../api/api";
+// import { ThunkAction } from "redux-thunk";
+import { ResultCodesEnum } from "../api/api";
+import { usersAPI } from "../api/users-api";
 import { UserType } from "../types/types";
-import { AppStateType, InferActionsTypes } from "./redux-store";
+import { AppStateType, BaseThunkType, InferActionsTypes } from "./redux-store";
 
 let initialState = {
   users: [] as Array<UserType>,
@@ -74,6 +75,7 @@ export const actions = {
 
 type GetStateType = () => AppStateType
 type DispatchType = Dispatch<ActionsType>
+type ThunkType = BaseThunkType<ActionsType>
 
 export const requestUsers = (currentPage: number, pageSize: number) => {
   return async (dispatch: DispatchType, getState: GetStateType) => {
@@ -86,7 +88,6 @@ export const requestUsers = (currentPage: number, pageSize: number) => {
   }
 };
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 
 export const changeFollowed = (isFollowed: boolean, userId: number): ThunkType => {
   return async (dispatch) => {
@@ -98,7 +99,7 @@ export const changeFollowed = (isFollowed: boolean, userId: number): ThunkType =
       response = await usersAPI.unfollow(userId) : 
       response = await usersAPI.follow(userId);
 
-    (response.data.resultCode === 0) && dispatch(actions.toggleFollowAC(userId));
+    (response.resultCode === ResultCodesEnum.Success) && dispatch(actions.toggleFollowAC(userId));
     dispatch(actions.toggleFollowingProgress(false, userId));    
   }
 }

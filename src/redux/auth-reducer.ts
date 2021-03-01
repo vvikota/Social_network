@@ -1,6 +1,11 @@
-import { ThunkAction } from "redux-thunk";
-import { authAPI, ResultCodesEnum, ResultCodesForCaptcha, securityAPI } from "../api/api";
-import { AppStateType } from "./redux-store";
+// import { ThunkAction } from "redux-thunk";
+import { authAPI} from "../api/auth-api";
+import { securityAPI } from "../api/security-api";
+import { ResultCodesEnum, ResultCodesForCaptcha} from "../api/api";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
+// import { Action } from "redux";
+import { stopSubmit } from "redux-form";
+// import { AppStateType } from "./redux-store";
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
@@ -13,8 +18,6 @@ let initialState = {
   isAuth: false as boolean,
   captchaUrl: null as null | string
 };
-
-export type initialStateType = typeof initialState;
 
 const authReducer = (state : initialStateType = initialState, action: ActionsType) : initialStateType => {
   switch(action.type){
@@ -29,47 +32,29 @@ const authReducer = (state : initialStateType = initialState, action: ActionsTyp
   }
 };
 
-type ActionsType = setUserDataActionType | getCaptchaUrlSuccesActionType
+export const actions = {
+  setUserData: 
+    (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => (
+      { type: SET_USER_DATA, payload: {userId, email, login, isAuth}} as const
+    ),
+  
+  getCaptchaUrlSucces: (captchaUrl: string) => (
+      { type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}} as const
+    ),
 
-type setUserDataActionPayloadType = {
-  userId: number | null
-  email: string | null
-  login: string | null
-  isAuth: boolean
-};
+}
 
-type setUserDataActionType = {
-  type: typeof SET_USER_DATA,
-  payload: setUserDataActionPayloadType
-};
-
-export const setUserData =
-  (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setUserDataActionType => (
-    { type: SET_USER_DATA, payload: {userId, email, login, isAuth}}
-  );
-
-type getCaptchaUrlSuccesActionType = {
-  type: typeof GET_CAPTCHA_URL_SUCCESS,
-  payload: {captchaUrl: string}
-};
-
-export const getCaptchaUrlSucces = (captchaUrl: string): getCaptchaUrlSuccesActionType => (
-  { type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl}}
-);
-
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
-
-export const getAuthUserData = (): ThunkType => async (dispatch) => {
+export const getAuthUserData = (): ThunkType => async (dispatch: any) => {
   let meData = await authAPI.me();
   
   if(meData.resultCode === ResultCodesEnum.Success){
     let {id, login, email} = meData.data;
-    dispatch(setUserData(id, login, email, true));
+    dispatch(actions.setUserData(id, login, email, true));
   }
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: null | string): ThunkType =>
- async (dispatch) => {
+ async (dispatch: any) => {
   let loginData = await authAPI.login(email, password, rememberMe, captcha)
   
   if(loginData.resultCode === ResultCodesEnum.Success){
@@ -81,19 +66,23 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
   }
 }
 
-export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
-  const response = await securityAPI.getCaptchaUrl();
-  const captchaUrl = response.data.url;
+export const getCaptchaUrl = () => async (dispatch: any) => {
+  const data = await securityAPI.getCaptchaUrl();
+  const captchaUrl = data.url;
 
-  dispatch(getCaptchaUrlSucces(captchaUrl));
+  dispatch(actions.getCaptchaUrlSucces(captchaUrl));
 } 
 
-export const logout = (): ThunkType => async (dispatch) => {
+export const logout = () => async (dispatch: any) => {
   let response = await authAPI.logout();
 
   if(response.data.resultCode === 0){
-    dispatch(setUserData(null, null, null, false));
+    dispatch(actions.setUserData(null, null, null, false));
   }
 }
 
 export default authReducer;
+
+export type initialStateType = typeof initialState;
+type ActionsType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsType | ReturnType<typeof stopSubmit>>

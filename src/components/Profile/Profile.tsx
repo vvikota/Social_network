@@ -22,7 +22,7 @@ const Profile: React.FC<PropTypes> = (props) => {
     savePhoto,
     saveProfile
   } = props;
-  console.log(props)
+  // console.log(props)
 
   return(
     <div className={style.content}>
