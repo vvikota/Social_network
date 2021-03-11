@@ -4,7 +4,7 @@ import { securityAPI } from "../api/security-api";
 import { ResultCodesEnum, ResultCodesForCaptcha} from "../api/api";
 import { BaseThunkType, InferActionsTypes } from "./redux-store";
 // import { Action } from "redux";
-import { stopSubmit } from "redux-form";
+import { FormAction, stopSubmit } from "redux-form";
 // import { AppStateType } from "./redux-store";
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
@@ -44,7 +44,7 @@ export const actions = {
 
 }
 
-export const getAuthUserData = (): ThunkType => async (dispatch: any) => {
+export const getAuthUserData = (): ThunkType => async (dispatch) => {
   let meData = await authAPI.me();
   
   if(meData.resultCode === ResultCodesEnum.Success){
@@ -54,7 +54,7 @@ export const getAuthUserData = (): ThunkType => async (dispatch: any) => {
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: null | string): ThunkType =>
- async (dispatch: any) => {
+ async (dispatch) => {
   let loginData = await authAPI.login(email, password, rememberMe, captcha)
   
   if(loginData.resultCode === ResultCodesEnum.Success){
@@ -66,14 +66,14 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
   }
 }
 
-export const getCaptchaUrl = () => async (dispatch: any) => {
+export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
   const data = await securityAPI.getCaptchaUrl();
   const captchaUrl = data.url;
 
   dispatch(actions.getCaptchaUrlSucces(captchaUrl));
 } 
 
-export const logout = () => async (dispatch: any) => {
+export const logout = (): ThunkType => async (dispatch) => {
   let response = await authAPI.logout();
 
   if(response.data.resultCode === 0){
@@ -85,4 +85,4 @@ export default authReducer;
 
 export type initialStateType = typeof initialState;
 type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType | ReturnType<typeof stopSubmit>>
+type ThunkType = BaseThunkType<ActionsType | FormAction>
